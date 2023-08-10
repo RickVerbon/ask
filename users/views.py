@@ -31,9 +31,4 @@ class UserLoginView(LoginView):
     template_name = "users/user_login.html"
 
     def get_success_url(self):
-        return reverse_lazy('user-test-view')
-
-
-
-def test(request):
-    return HttpResponse("Login successfull")
+        return reverse_lazy('home-view')
