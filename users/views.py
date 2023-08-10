@@ -17,7 +17,6 @@ class UserCreateView(CreateView):
     def form_valid(self, form):
         password = form.cleaned_data.get('password')
         password2 = form.cleaned_data.get('password2')
-        print(password, password2)
         if str(password) != str(password2):
             return HttpResponse("Password's do not match, user not created")
 

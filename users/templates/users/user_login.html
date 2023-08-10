@@ -1,7 +1,17 @@
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <button type="submit">Login</button>
-</form>
+{%  extends 'base.html' %}
+
+{%  load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+        <h1>Login:</h1>
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form|crispy }}
+            <p>No account yet? Click <a href="{% url 'user-create-view' %}">here</a> to register</p>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+{% endblock %}
