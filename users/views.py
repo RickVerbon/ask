@@ -1,10 +1,11 @@
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.models import User
 from users.forms import UserRegisterForm
+
 # Create your views here.
 
 
@@ -29,6 +30,12 @@ class UserCreateView(CreateView):
 class UserLoginView(LoginView):
     model = User
     template_name = "users/user_login.html"
+
+    def get_success_url(self):
+        return reverse_lazy('home-view')
+
+
+class UserLogoutView(LogoutView):
 
     def get_success_url(self):
         return reverse_lazy('home-view')
