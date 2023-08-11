@@ -34,10 +34,10 @@ class UserLoginView(LoginView):
     template_name = "users/user_login.html"
 
     def get_success_url(self):
-        return reverse_lazy('home-view')
+        return reverse_lazy('question-list-view')
 
 
 class UserLogoutView(LogoutView):
 
     def get_success_url(self):
-        return reverse_lazy('home-view')
+        return reverse_lazy('question-list-view')

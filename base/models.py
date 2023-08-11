@@ -9,15 +9,24 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = "Categories"
 
+    def __str__(self):
+        return self.name
+
 
 class Question(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    question_title = models.CharField(max_length=200)
-    question_text = models.TextField(max_length=2000)
+    title = models.CharField(max_length=200)
+    text = models.TextField(max_length=2000)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    upvotes = models.IntegerField()
+
+    def __str__(self):
+        return self.question_title
+
+    def get_all_upvotes(self):
+        upvotes_for_question = Upvote.objects.filter(question=self)
+        return upvotes_for_question.count()
 
 
 class Comment(models.Model):
@@ -27,6 +36,9 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"Comment: {self.id} - Question: {self.question.id}"
+
 
 class Upvote(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="upvote")
@@ -34,3 +46,6 @@ class Upvote(models.Model):
 
     class Meta:
         unique_together = ['user', 'question']  # Enforces one upvote per user per post
+
+    def __str__(self):
+        return f"Upvote: {self.id} - {self.question.id}"
