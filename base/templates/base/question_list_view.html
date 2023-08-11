@@ -10,12 +10,13 @@
           <div class="card mb-4">
             <div class="card-body">
               <h5 class="card-title">{{ question.title }}</h5>
-              <p class="card-text">{{ question.text }}</p>
+                <p class="card-text">{{ question.text|truncatechars:300 }} <a href="{% url 'question-detail-view' question.pk %}">(meer)</a></p>
             </div>
             <div class="card-footer d-flex justify-content-between">
               <div class="d-flex">
-                <span><a href="{% url 'question-detail-view' question.id %}" class="mr-2"><i class="bi bi-chat-right"></i></a></span>
-                <span><a href=""><i class="bi bi-hand-thumbs-up"></i></a>{{ question.get_all_upvotes }}</span>
+                <span><a href="{% url 'question-detail-view' question.id %}" class="mr-2"><i class="bi bi-chat-right"></i></a>{{ question.get_comment_count }}</span>
+                  <span>&nbsp;&nbsp;&nbsp;</span>
+                <span><a href=""><i class="bi bi-hand-thumbs-up"></i></a> {{ question.get_upvote_count }}</span>
               </div>
               <small class="text-muted mt-auto">Created: {{ question.created_at }}</small>
             </div>

@@ -22,11 +22,15 @@ class Question(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.question_title
+        return self.title
 
-    def get_all_upvotes(self):
+    def get_upvote_count(self):
         upvotes_for_question = Upvote.objects.filter(question=self)
         return upvotes_for_question.count()
+
+    def get_comment_count(self):
+        comments_on_question = Comment.objects.filter(question=self)
+        return comments_on_question.count()
 
 
 class Comment(models.Model):
