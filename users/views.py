@@ -1,6 +1,6 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from users.models import Profile
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.models import User
@@ -21,10 +21,12 @@ class UserCreateView(CreateView):
         if str(password) != str(password2):
             return HttpResponse("Password's do not match, user not created")
 
-        user = form.save(commit=False)
+        response = super().form_valid(form)
+        user = self.object
+        Profile.objects.create(user=user)
         user.set_password(password)
         user.save()
-        return super().form_valid(form)
+        return response
 
 
 class UserLoginView(LoginView):
