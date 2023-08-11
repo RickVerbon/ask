@@ -53,7 +53,4 @@ class UpvoteView(View):
         # Calculate and get the updated upvote count for the question
         updated_upvote_count = question.upvote_set.count()
 
-        # Return the updated count in a JSON response
-        response_data = {'upvote_count': updated_upvote_count}
-        amount = response_data['upvote_count']
-        return HttpResponse(amount)
+        return HttpResponse(updated_upvote_count)
