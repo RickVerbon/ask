@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     
     # apps
     'users',
-    'app',
+    'base',
 ]
 
 MIDDLEWARE = [
