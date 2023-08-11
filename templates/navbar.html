@@ -19,7 +19,7 @@
 
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Ask a Question</a>
+          <a class="nav-link" href="{% url "question-create-view" %}">Ask a Question</a>
         </li>
         {% endif %}
 
