@@ -16,7 +16,17 @@
               <div class="d-flex">
                 <span><a href="{% url 'question-detail-view' question.id %}" class="mr-2"><i class="bi bi-chat-right"></i></a>{{ question.get_comment_count }}</span>
                   <span>&nbsp;&nbsp;&nbsp;</span>
-                <span><a href=""><i class="bi bi-hand-thumbs-up"></i></a> {{ question.get_upvote_count }}</span>
+
+                    <form>
+                      {% csrf_token %}
+                      <div id="upvote-container">
+                        <a data-hx-post="{% url 'upvote-view' question.id %}"
+                           data-hx-target="#upvote-count">
+                          <i class="bi bi-hand-thumbs-up"></i>
+                        </a>
+                        <span id="upvote-count">{{ question.get_upvote_count }}</span>
+                      </div>
+                    </form>
               </div>
               <small class="text-muted mt-auto">Created: {{ question.created_at }}</small>
             </div>
