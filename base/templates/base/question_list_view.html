@@ -1,0 +1,56 @@
+{% extends 'base.html' %}>
+
+{% block content %}
+
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-8">
+        {% for question in questions %}
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">{{ question.title }}</h5>
+                <p class="card-text">{{ question.text|truncatechars:300 }} <a href="{% url 'question-detail-view' question.pk %}">(meer)</a></p>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <div class="d-flex">
+                <span><a href="{% url 'question-detail-view' question.id %}" class="mr-2"><i class="bi bi-chat-right"></i></a>{{ question.get_comment_count }}</span>
+                  <span>&nbsp;&nbsp;&nbsp;</span>
+
+                    <form>
+                      {% csrf_token %}
+                      <div id="upvote-container">
+                        <a data-hx-post="{% url 'upvote-view' question.id %}"
+                           data-hx-target="#upvote-count">
+                          <i class="bi bi-hand-thumbs-up"></i>
+                        </a>
+                        <span id="upvote-count">{{ question.get_upvote_count }}</span>
+                      </div>
+                    </form>
+              </div>
+              <small class="text-muted mt-auto">Created: {{ question.created_at }}</small>
+            </div>
+          </div>
+        {% endfor %}
+
+      <!-- Repeat similar card for multiple questions -->
+
+
+    </div>
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Popular Topics</h5>
+          <ul class="list-group">
+            <li class="list-group-item">Topic 1</li>
+            <li class="list-group-item">Topic 2</li>
+            <li class="list-group-item">Topic 3</li>
+            <!-- Add more topics -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

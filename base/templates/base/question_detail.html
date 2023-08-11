@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ question.title }}</h5>
+        <p class="card-text">{{ question.text }}</p>
+         <form>
+          {% csrf_token %}
+          <div id="upvote-container">
+            <a data-hx-post="{% url 'upvote-view' question.id %}"
+               data-hx-target="#upvote-count">
+              <i class="bi bi-hand-thumbs-up"></i>
+            </a>
+            <span id="upvote-count">{{ question.get_upvote_count }}</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <h3>Comments</h3>
+    <ul class="list-group">
+      {% for comment in question.comments.all %}
+        <li class="list-group-item comment-item">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="comment-content">
+              <p class="mb-0"><strong>{{ comment.author }}</strong></p>
+              <p class="comment-date text-muted">{{ comment.created_at }}</p>
+              <p class="comment-text">{{ comment.text }}</p>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
