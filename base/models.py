@@ -6,6 +6,9 @@ from users.models import Profile
 class Category(models.Model):
     name = models.CharField(max_length=50)
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
 
 class Question(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
@@ -27,7 +30,7 @@ class Comment(models.Model):
 
 class Upvote(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="upvote")
-    post = models.ForeignKey(Question, on_delete=models.CASCADE)  # Or Comment, depending on your use case
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)  # Or Comment, depending on your use case
 
     class Meta:
-        unique_together = ['user', 'post']  # Enforces one upvote per user per post
+        unique_together = ['user', 'question']  # Enforces one upvote per user per post
