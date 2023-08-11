@@ -32,6 +32,9 @@ class QuestionCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user.profile
         return super().form_valid(form)
 
+    def get_success_url(self):
+        return reverse_lazy('question-detail-view', kwargs={'pk': self.object.pk})
+
 
 class UpvoteView(View):
     def post(self, request, question_id):
