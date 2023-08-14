@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from base.models import Question, Upvote
+from base.models import Question, Upvote, Comment
 from base.mixins import IsAuthorMixin
 
 
@@ -25,7 +25,7 @@ class QuestionDetailView(DetailView):
     success_url = reverse_lazy('question-list-view')
 
 
-class QuestionCreateView(LoginRequiredMixin, IsAuthorMixin, CreateView):
+class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
     fields = ('title', 'text', 'category')
 
@@ -68,3 +68,18 @@ class UpvoteView(LoginRequiredMixin, View):
         updated_upvote_count = question.upvote_set.count()
 
         return HttpResponse(updated_upvote_count)
+
+
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    model = Comment
+    fields = ('text',)
+
+    def form_valid(self, form):
+        question_pk = self.kwargs['pk']
+        form.instance.author = self.request.user.profile
+        form.instance.question_id = question_pk
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        question_pk = self.kwargs['pk']
+        return reverse_lazy('question-detail-view', kwargs={'pk': question_pk})

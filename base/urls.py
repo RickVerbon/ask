@@ -4,6 +4,7 @@ from base.views import (QuestionListView,
                         QuestionCreateView,
                         QuestionUpdateView,
                         QuestionDeleteView,
+                        CommentCreateView,
                         UpvoteView,)
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path("question/<int:pk>/edit", QuestionUpdateView.as_view(), name="question-update-view"),
     path("question/<int:pk>/delete", QuestionDeleteView.as_view(), name="question-delete-view"),
     path('question/<int:question_id>/upvote/', UpvoteView.as_view(), name='upvote-view'),
+    path('question/<int:pk>/comment', CommentCreateView.as_view(), name="comment-create-view"),
 ]

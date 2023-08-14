@@ -25,7 +25,7 @@
                       <div id="upvote-container">
                         <a data-hx-post="{% url 'upvote-view' question.id %}"
                            data-hx-target="#upvote-count{{ question.id }}">
-                          <i class="bi bi-hand-thumbs-up"></i>
+                         <i class="bi bi-hand-thumbs-up"></i>
                         </a>
                         <span id="upvote-count{{ question.id }}">{{ question.get_upvote_count }}</span>
                       </div>
