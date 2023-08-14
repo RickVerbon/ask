@@ -22,9 +22,10 @@ class QuestionListView(ListView):
 
 class QuestionDetailView(DetailView):
     model = Question
+    success_url = reverse_lazy('question-list-view')
 
 
-class QuestionCreateView(LoginRequiredMixin, CreateView):
+class QuestionCreateView(LoginRequiredMixin, IsAuthorMixin, CreateView):
     model = Question
     fields = ('title', 'text', 'category')
 
@@ -36,7 +37,7 @@ class QuestionCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy('question-detail-view', kwargs={'pk': self.object.pk})
 
 
-class QuestionUpdateView(IsAuthorMixin, UpdateView):
+class QuestionUpdateView(LoginRequiredMixin, IsAuthorMixin, UpdateView):
     model = Question
     fields = ('title', 'text', 'category')
 
@@ -44,8 +45,9 @@ class QuestionUpdateView(IsAuthorMixin, UpdateView):
         return reverse_lazy('question-detail-view', kwargs={'pk': self.object.pk})
 
 
-class QuestionDeleteView(IsAuthorMixin, DeleteView):
+class QuestionDeleteView(LoginRequiredMixin, IsAuthorMixin, DeleteView):
     model = Question
+    success_url = reverse_lazy('question-list-view')
 
 
 class UpvoteView(LoginRequiredMixin, View):

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Delete Question</h5>
+        <p class="card-text">Are you sure you want to delete the question "{{ question.title }}"?</p>
+        <form method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Delete</button>
+          <a href="{% url 'question-detail-view' question.id %}" class="btn btn-secondary ml-2">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
