@@ -1,12 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.decorators.http import require_POST
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from base.models import Question, Upvote
+from base.mixins import IsAuthorMixin
 
 
 # Create your views here.
@@ -16,6 +17,7 @@ class QuestionListView(ListView):
     model = Question
     template_name = "base/question_list_view.html"
     context_object_name = "questions"
+    ordering = ['-created_at']
 
 
 class QuestionDetailView(DetailView):
@@ -27,8 +29,6 @@ class QuestionCreateView(LoginRequiredMixin, CreateView):
     fields = ('title', 'text', 'category')
 
     def form_valid(self, form):
-        print(self.request.user)
-        print(self.request.user.profile)
         form.instance.author = self.request.user.profile
         return super().form_valid(form)
 
@@ -36,7 +36,19 @@ class QuestionCreateView(LoginRequiredMixin, CreateView):
         return reverse_lazy('question-detail-view', kwargs={'pk': self.object.pk})
 
 
-class UpvoteView(View):
+class QuestionUpdateView(IsAuthorMixin, UpdateView):
+    model = Question
+    fields = ('title', 'text', 'category')
+
+    def get_success_url(self):
+        return reverse_lazy('question-detail-view', kwargs={'pk': self.object.pk})
+
+
+class QuestionDeleteView(IsAuthorMixin, DeleteView):
+    model = Question
+
+
+class UpvoteView(LoginRequiredMixin, View):
     def post(self, request, question_id):
         question = get_object_or_404(Question, id=question_id)
 

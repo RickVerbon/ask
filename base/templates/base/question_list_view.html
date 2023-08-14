@@ -9,7 +9,10 @@
         {% for question in questions %}
           <div class="card mb-4">
             <div class="card-body">
-              <h5 class="card-title">{{ question.title }}</h5>
+                <div class="d-flex justify-content-between mb-3">
+                    <h5 class="card-title">{{ question.title }}</h5>
+                    <img src="{{ question.author.avatar.url }}" alt="{{ question.author.user.username }}" class="rounded-circle" style="width: 50px; height: 50px;">
+                </div>
                 <p class="card-text">{{ question.text|truncatechars:300 }} <a href="{% url 'question-detail-view' question.pk %}">(meer)</a></p>
             </div>
             <div class="card-footer d-flex justify-content-between">
