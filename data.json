@@ -1,0 +1,237 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "username": "Rick",
+            "password": "123",
+            "email": "user1@example.com"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "username": "Daan",
+            "password": "123",
+            "email": "user2@example.com"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "username": "Anke",
+            "password": "123",
+            "email": "user3@example.com"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "username": "Toby",
+            "password": "123",
+            "email": "user4@example.com"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields": {
+            "username": "Ruben",
+            "password": "123",
+            "email": "user5@example.com"
+        }
+    },
+    {
+        "model": "users.profile",
+        "pk": 1,
+        "fields": {
+            "user": 1
+        }
+    },
+    {
+        "model": "users.profile",
+        "pk": 2,
+        "fields": {
+            "user": 2
+        }
+    },
+    {
+        "model": "users.profile",
+        "pk": 3,
+        "fields": {
+            "user": 3
+        }
+    },
+    {
+        "model": "users.profile",
+        "pk": 4,
+        "fields": {
+            "user": 4
+        }
+    },
+    {
+        "model": "users.profile",
+        "pk": 5,
+        "fields": {
+            "user": 5
+        }
+    },
+    {
+        "model": "base.category",
+        "pk": 1,
+        "fields": {
+            "name": "Movies"
+        }
+    },
+    {
+        "model": "base.category",
+        "pk": 2,
+        "fields": {
+            "name": "Tech"
+        }
+    },
+    {
+        "model": "base.category",
+        "pk": 3,
+        "fields": {
+            "name": "Cooking"
+        }
+    },
+    {
+        "model": "base.category",
+        "pk": 4,
+        "fields": {
+            "name": "Sports"
+        }
+    },
+    {
+        "model": "base.category",
+        "pk": 5,
+        "fields": {
+            "name": "Gaming"
+        }
+    },
+    {
+        "model": "base.question",
+        "fields": {
+            "author": 1,
+            "title": "Favorite Movie of All Time?",
+            "text": "If you had to pick just one, what would be your all-time favorite movie?",
+            "category": 1,
+            "created_at": "2023-08-14T12:00:00Z",
+            "updated_at": "2023-08-14T12:00:00Z"
+        }
+    },
+    {
+        "model": "base.question",
+        "fields": {
+            "author": 2,
+            "title": "Python vs. JavaScript for Web Development?",
+            "text": "Which programming language is better suited for web development, Python or JavaScript?",
+            "category": 2,
+            "created_at": "2023-08-14T12:00:00Z",
+            "updated_at": "2023-08-14T12:00:00Z"
+        }
+    },
+    {
+        "model": "base.question",
+        "fields": {
+            "author": 3,
+            "title": "Best Pasta Recipe?",
+            "text": "Share your favorite pasta recipe that never fails to impress!",
+            "category": 3,
+            "created_at": "2023-08-14T12:00:00Z",
+            "updated_at": "2023-08-14T12:00:00Z"
+        }
+    },
+    {
+        "model": "base.question",
+        "fields": {
+            "author": 4,
+            "title": "Favorite Soccer Team?",
+            "text": "Which soccer team is your absolute favorite, and why?",
+            "category": 4,
+            "created_at": "2023-08-14T12:00:00Z",
+            "updated_at": "2023-08-14T12:00:00Z"
+        }
+    },
+    {
+        "model": "base.question",
+        "fields": {
+            "author": 5,
+            "title": "Best RPG Game Recommendation?",
+            "text": "Looking for a new RPG game to play. Any recommendations?",
+            "category": 5,
+            "created_at": "2023-08-14T12:00:00Z",
+            "updated_at": "2023-08-14T12:00:00Z"
+        }
+    },
+    {
+        "model": "base.question",
+        "fields": {
+            "author": 2,
+            "title": "Favorite Sci-Fi Movie?",
+            "text": "What's your favorite science fiction movie and why do you love it?",
+            "category": 1,
+            "created_at": "2023-08-14T12:00:00Z",
+            "updated_at": "2023-08-14T12:00:00Z"
+        }
+    },
+    {
+        "model": "base.question",
+        "fields": {
+            "author": 4,
+            "title": "Choosing a Programming Language?",
+            "text": "I'm new to coding. How do I choose the right programming language to start with?",
+            "category": 2,
+            "created_at": "2023-08-14T12:00:00Z",
+            "updated_at": "2023-08-14T12:00:00Z"
+        }
+    },
+    {
+        "model": "base.question",
+        "fields": {
+            "author": 1,
+            "title": "Quick Breakfast Recipes?",
+            "text": "Share your favorite quick and easy breakfast recipes!",
+            "category": 3,
+            "created_at": "2023-08-14T12:00:00Z",
+            "updated_at": "2023-08-14T12:00:00Z"
+        }
+    },
+    {
+        "model": "base.question",
+        "fields": {
+            "author": 3,
+            "title": "Most Exciting Sports Moment?",
+            "text": "What's the most exciting sports moment you've ever witnessed?",
+            "category": 4,
+            "created_at": "2023-08-14T12:00:00Z",
+            "updated_at": "2023-08-14T12:00:00Z"
+        }
+    },
+    {
+        "model": "base.question",
+        "fields": {
+            "author": 5,
+            "title": "Upcoming Game Releases?",
+            "text": "What upcoming game releases are you looking forward to?",
+            "category": 5,
+            "created_at": "2023-08-14T12:00:00Z",
+            "updated_at": "2023-08-14T12:00:00Z"
+        }
+    },
+    {
+        "model": "base.comment",
+        "fields": {
+            "author": 4,
+            "question": 1,
+            "text": "This is a great question!",
+            "created_at": "2023-08-14T12:00:00Z",
+            "updated_at": "2023-08-14T12:00:00Z"
+        }
+    },
+]
