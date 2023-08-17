@@ -6,6 +6,15 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-lg-8">
+
+        {% if not questions %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2>No questions found</h2>
+             </div>
+            </div>
+        {% endif %}
+
         {% for question in questions %}
           <div class="card mb-4">
             <div class="card-body">

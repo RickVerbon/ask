@@ -8,7 +8,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from base.models import Question, Upvote, Comment
 from base.mixins import IsAuthorMixin
-
+from django.db.models import Q
 
 # Create your views here.
 
@@ -18,6 +18,22 @@ class QuestionListView(ListView):
     template_name = "base/question_list_view.html"
     context_object_name = "questions"
     ordering = ['-created_at']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_home'] = self.request.path == '/'
+        return context
+
+    def get_queryset(self):
+        search_query = self.request.GET.get('search_query')
+        queryset = super().get_queryset()
+
+        if search_query:
+            queryset = queryset.filter(
+                Q(title__icontains=search_query)
+            ).distinct()
+
+        return queryset
 
 
 class QuestionDetailView(DetailView):
